@@ -47,11 +47,19 @@ module.exports = function(grunt) {
 					plugins: [],
 					modifyVars: {
 						'font-path': '/assets/plugins/emoji/fonts',
+						'font-default': "'Times News Roman'",
+						'font-input-text': "'Calibri'",
+						'font-input-button': "'Play'",
+						'font-textarea-text': "'Open Sans'",
+						'font-selector-text': "'Tahoma'"
 					}
 				},
 				files : {
 					'assets/plugins/emoji/css/noto-color-emoji.css': [
 						'src/less/noto_color_emoji.less'
+					],
+					'assets/plugins/emoji/css/emoji.css': [
+						'src/less/emoji.less'
 					]
 				}
 			},
@@ -66,6 +74,9 @@ module.exports = function(grunt) {
 					'assets/plugins/emoji/css/noto-color-emoji.min.css' : [
 						'assets/plugins/emoji/css/noto-color-emoji.css'
 					],
+					'assets/plugins/emoji/css/emoji.min.css' : [
+						'assets/plugins/emoji/css/emoji.css'
+					],
 				}
 			},
 		},
@@ -78,7 +89,25 @@ module.exports = function(grunt) {
 				],
 				dest: 'assets/plugins/emoji/fonts/',
 			},
-		}
+		},
+		compress: {
+			main: {
+				options: {
+					archive: 'emoji.zip'
+				},
+				files: [
+					{
+						expand: true,
+						cwd: '.',
+						src: [
+							'assets/**',
+							'install/**',
+						],
+						dest: '/emoji/'
+					},
+				],
+			},
+		},
 	});
 	grunt.registerTask('default',	[
 		//'concat',
@@ -87,6 +116,7 @@ module.exports = function(grunt) {
 		//'autoprefixer',
 		'cssmin',
 		//'pug',
-		'copy'
+		'copy',
+		'compress'
 	]);
 }
