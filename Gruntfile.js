@@ -64,6 +64,35 @@ module.exports = function(grunt) {
 				}
 			},
 		},
+		autoprefixer:{
+			options: {
+				browsers: [
+					"last 4 version"
+				],
+				cascade: true
+			},
+			css: {
+				files: {
+					'assets/plugins/emoji/css/emoji.css' : [
+						'assets/plugins/emoji/css/emoji.css'
+					],
+					'assets/plugins/emoji/css/noto-color-emoji.css' : [
+						'assets/plugins/emoji/css/noto-color-emoji.css'
+					],
+				}
+			},
+		},
+		group_css_media_queries: {
+			options: {},
+			files: {
+				'assets/plugins/emoji/css/emoji.css': [
+					'assets/plugins/emoji/css/emoji.css'
+				],
+				'assets/plugins/emoji/css/noto-color-emoji.css': [
+					'assets/plugins/emoji/css/noto-color-emoji.css'
+				],
+			},
+		},
 		cssmin: {
 			options: {
 				mergeIntoShorthands: false,
@@ -71,11 +100,11 @@ module.exports = function(grunt) {
 			},
 			minify: {
 				files: {
-					'assets/plugins/emoji/css/noto-color-emoji.min.css' : [
-						'assets/plugins/emoji/css/noto-color-emoji.css'
-					],
 					'assets/plugins/emoji/css/emoji.min.css' : [
 						'assets/plugins/emoji/css/emoji.css'
+					],
+					'assets/plugins/emoji/css/noto-color-emoji.min.css' : [
+						'assets/plugins/emoji/css/noto-color-emoji.css'
 					],
 				}
 			},
@@ -89,6 +118,14 @@ module.exports = function(grunt) {
 				],
 				dest: 'assets/plugins/emoji/fonts/',
 			},
+			src: {
+				expand: true,
+				cwd: 'src/fonts',
+				src: [
+					'**'
+				],
+				dest: 'assets/plugins/emoji/fonts/',
+			}
 		},
 		compress: {
 			main: {
@@ -113,7 +150,8 @@ module.exports = function(grunt) {
 		//'concat',
 		//'uglify',
 		'less',
-		//'autoprefixer',
+		'autoprefixer',
+		'group_css_media_queries',
 		'cssmin',
 		//'pug',
 		'copy',

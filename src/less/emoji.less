@@ -4,10 +4,25 @@
 @font-textarea-text: 'Calibry';
 @font-selector-text: 'Calibry';
 
+/* 1 */
 body {
 	font-family: 'Noto Color Emoji', @font-default, sans-serif;
 }
 
+/* 2 */
+// Кнопка
+input,
+button {
+	&,
+	&[type=button],
+	&[type=file],
+	&[type=reset],
+	&[type=submit] {
+		font-family: 'Noto Color Emoji', @font-input-button, sans-serif;
+	}
+}
+
+/* 3 */
 input {
 	// Текстовые
 	&[type=date],
@@ -25,30 +40,15 @@ input {
 	&[type=week] {
 		font-family: 'Noto Color Emoji', @font-input-text, sans-serif;
 	}
-	// Кнопки
-	&[type=button],
-	&[type=file],
-	&[type=reset],
-	&[type=submit] {
-		font-family: 'Noto Color Emoji', @font-input-button, sans-serif;
-	}
 }
 
-// Кнопка
-button {
-	&,
-	&[type=button],
-	&[type=reset],
-	&[type=submit] {
-		font-family: 'Noto Color Emoji', @font-input-button, sans-serif;
-	}
-}
-
+/* 4 */
 // Многострочный текст
 textarea {
 	font-family: 'Noto Color Emoji', @font-textarea-text, sans-serif;
 }
 
+/* 5 */
 // Список
 select {
 	&,
