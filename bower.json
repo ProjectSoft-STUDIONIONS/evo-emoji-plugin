@@ -1,0 +1,17 @@
+{
+  "name": "emoji",
+  "description": "Плагин Emoji для Evolution CMS",
+  "main": "Gruntfile.js",
+  "authors": [
+    "ProjectSoft <projectsoft2009@yandex.ru>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/ProjectSoft-STUDIONIONS/evo-emoji-plugin",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
