@@ -23,13 +23,9 @@
 	}
 	.emoji-tabs {
 		font-family: 'Noto Color Emoji', 'Calibri', 'Tahoma', sans-serif;
-		display: -ms-flexbox;
 		display: flex;
-		-ms-flex-direction: row;
 		flex-direction: row;
-		-ms-flex-wrap: wrap;
 		flex-wrap: wrap;
-		-ms-flex-pack: start;
 		justify-content: flex-start;
 		position: relative;
 		z-index: 3;
@@ -38,19 +34,14 @@
 			position: relative;
 			z-index: 1;
 			box-shadow: 0 0px 0px 0px #fff;
-			-webkit-user-select: none;
-			-ms-user-select: none;
 			user-select: none;
-			-ms-flex: 1;
 			flex: 1;
 			min-height: 100%;
 			text-align: center;
 			> label {
 				display: -ms-flexbox;
 				display: flex;
-				-ms-flex-align: center;
 				align-items: center;
-				-ms-flex-pack: center;
 				justify-content: center;
 				height: 100%;
 				cursor: pointer;
@@ -100,8 +91,6 @@
 			h1, h2, h3, h4, h5, h6 {
 				padding-left: 15px;
 				padding-right: 15px;
-				-webkit-user-select: none;
-				-ms-user-select: none;
 				user-select: none;
 				font-weight: 500;
 				margin-top: 5px;
@@ -138,13 +127,10 @@
 		}
 	}
 	.emoji-icons-wrapp {
-		display: -ms-flexbox;
 		display: flex;
-		-ms-flex-direction: row;
 		flex-direction: row;
 		-ms-flex-wrap: wrap;
 		flex-wrap: wrap;
-		-ms-flex-pack: start;
 		justify-content: flex-start;
 		padding-left: 25px;
 		padding-right: 25px;
@@ -168,12 +154,8 @@
 		font-size: 1.6em;
 		min-width: 2em;
 		text-align: center;
-		-ms-flex: 1;
-		flex: 1;
 		transition: all .3s ease;
 		transform: scale(1);
-		-webkit-user-select: none;
-		-ms-user-select: none;
 		user-select: none;
 		&:hover {
 			box-shadow: 0 0 0px 3px #ffffff, 0 0 20px 5px #bbbbbb;
@@ -184,8 +166,6 @@
 		&.copy {
 			background-color: #92ff92;
 			box-shadow: 0 0 0 3px #ffff00, 0 0 20px 5px #bbb, inset 0 0 10px 3px #00dcff;
-			-webkit-user-select: text;
-			-ms-user-select: text;
 			user-select: text;
 		}
 		&.error {

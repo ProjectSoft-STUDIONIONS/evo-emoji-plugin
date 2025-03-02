@@ -180,11 +180,11 @@ code span {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-direction: row;
-  flex-direction: row;
+      flex-direction: row;
   -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
+      flex-wrap: wrap;
   -ms-flex-pack: start;
-  justify-content: flex-start;
+      justify-content: flex-start;
   position: relative;
   z-index: 3;
 }
@@ -194,10 +194,10 @@ code span {
   z-index: 1;
   box-shadow: 0 0px 0px 0px #fff;
   -webkit-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+      -ms-user-select: none;
+          user-select: none;
   -ms-flex: 1;
-  flex: 1;
+      flex: 1;
   min-height: 100%;
   text-align: center;
 }
@@ -205,9 +205,9 @@ code span {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-align: center;
-  align-items: center;
+      align-items: center;
   -ms-flex-pack: center;
-  justify-content: center;
+      justify-content: center;
   height: 100%;
   cursor: pointer;
   padding: 15px 10px;
@@ -262,8 +262,8 @@ code span {
   padding-left: 15px;
   padding-right: 15px;
   -webkit-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+      -ms-user-select: none;
+          user-select: none;
   font-weight: 500;
   margin-top: 5px;
   margin-bottom: unset;
@@ -300,11 +300,11 @@ code span {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-direction: row;
-  flex-direction: row;
+      flex-direction: row;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   -ms-flex-pack: start;
-  justify-content: flex-start;
+      justify-content: flex-start;
   padding-left: 25px;
   padding-right: 25px;
   padding-bottom: 25px;
@@ -326,14 +326,12 @@ code span {
   font-size: 1.6em;
   min-width: 2em;
   text-align: center;
-  -ms-flex: 1;
-  flex: 1;
   transition: all 0.3s ease;
   -ms-transform: scale(1);
       transform: scale(1);
   -webkit-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 .emoji-wrapp .emoji--icon:hover {
   box-shadow: 0 0 0px 3px #ffffff, 0 0 20px 5px #bbbbbb;
@@ -346,8 +344,8 @@ code span {
   background-color: #92ff92;
   box-shadow: 0 0 0 3px #ffff00, 0 0 20px 5px #bbb, inset 0 0 10px 3px #00dcff;
   -webkit-user-select: text;
-  -ms-user-select: text;
-  user-select: text;
+      -ms-user-select: text;
+          user-select: text;
 }
 .emoji-wrapp .emoji--icon.error,
 .emoji-wrapp .emoji--icon.error:hover {
