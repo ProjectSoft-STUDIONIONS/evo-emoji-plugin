@@ -20,7 +20,7 @@ module.exports = function(grunt) {
 							encoding: "utf8"
 						}).toString();
 						text += buff;
-						arr.push(file.replace(__dirname, "").slice(1));
+						arr.push(file.replace(path.normalize(__dirname + "/"), ""));
 					}catch(e){
 						// Ничего не делаем
 						arr.push("Not found");

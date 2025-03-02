@@ -3,14 +3,31 @@
 	[
 		{
 			"path": ".",
-			"name": "Emoji Plugin EVO"
+			"name": "Emoji Plugin EVO",
+			"folder_exclude_patterns": [
+				"node_modules",
+				"bower_components"
+			],
+			"file_exclude_patterns": [
+				"*.zip"
+			]
 		}
 	],
 	"settings":  {
+		"theme": "Adaptive.sublime-theme",
+		"color_scheme": "Monokai.sublime-color-scheme",
+		"light_color_scheme": "Breakers.sublime-color-scheme",
+		"dark_color_scheme": "Mariana.sublime-color-scheme",
+		"ignored_packages": [
+			"Vintage",
+		],
+		"font_size": 14,
+		"file_tab_style": "square",
+		"tab_size": 4,
 		"default_line_ending": "unix",
 		"show_line_endings": true,
-		"font_size": 14,
-		"tab_size": 4
+		"ensure_newline_at_eof_on_save": true,
+		"translate_tabs_to_spaces": false
 	},
 	"build_systems": [
 		{
