@@ -20,7 +20,7 @@ module.exports = function(grunt) {
 							encoding: "utf8"
 						}).toString();
 						text += buff;
-						arr.push(file);
+						arr.push(file.replace(__dirname, "").slice(1));
 					}catch(e){
 						// Ничего не делаем
 						arr.push("Not found");
@@ -39,6 +39,65 @@ module.exports = function(grunt) {
 	grunt.initConfig({
 		globalConfig: {},
 		pkg: {},
+		clean: {
+			options: {
+				force: true,
+			},
+			zip: [
+				'*.zip',
+				'assets/plugins/emoji/fonts/**/*'
+			],
+		},
+		concat: {
+			options: {
+				separator: "\n",
+			},
+			emoji: {
+				src: [
+					'src/js/plugin.js'
+				],
+				dest: 'assets/plugins/emoji/js/plugin.js'
+			},
+		},
+		uglify: {
+			options: {
+				sourceMap: false,
+				compress: {
+					drop_console: true
+				},
+				output: {
+					ascii_only: true
+				}
+			},
+			app: {
+				files: [
+					{
+						expand: true,
+						flatten : true,
+						src: [
+							'assets/plugins/emoji/js/plugin.js'
+						],
+						dest: 'assets/plugins/emoji/js/',
+						filter: 'isFile',
+						rename: function (dst, src) {
+							return dst + '/' + src.replace('.js', '.min.js');
+						}
+					},
+					{
+						expand: true,
+						flatten : true,
+						src: [
+							'src/pug/javascript.js'
+						],
+						dest: 'src/pug/',
+						filter: 'isFile',
+						rename: function (dst, src) {
+							return dst + '/' + src.replace('.js', '.min.js');
+						}
+					}
+				]
+			},
+		},
 		less: {
 			css: {
 				options : {
@@ -60,6 +119,9 @@ module.exports = function(grunt) {
 					],
 					'assets/plugins/emoji/css/emoji.css': [
 						'src/less/emoji.less'
+					],
+					'assets/plugins/emoji/css/plugin.css': [
+						'src/less/plugin.less'
 					]
 				}
 			},
@@ -73,11 +135,14 @@ module.exports = function(grunt) {
 			},
 			css: {
 				files: {
+					'assets/plugins/emoji/css/noto-color-emoji.css' : [
+						'assets/plugins/emoji/css/noto-color-emoji.css'
+					],
 					'assets/plugins/emoji/css/emoji.css' : [
 						'assets/plugins/emoji/css/emoji.css'
 					],
-					'assets/plugins/emoji/css/noto-color-emoji.css' : [
-						'assets/plugins/emoji/css/noto-color-emoji.css'
+					'assets/plugins/emoji/css/plugin.css' : [
+						'assets/plugins/emoji/css/plugin.css'
 					],
 				}
 			},
@@ -85,11 +150,14 @@ module.exports = function(grunt) {
 		group_css_media_queries: {
 			options: {},
 			files: {
+				'assets/plugins/emoji/css/noto-color-emoji.css': [
+					'assets/plugins/emoji/css/noto-color-emoji.css'
+				],
 				'assets/plugins/emoji/css/emoji.css': [
 					'assets/plugins/emoji/css/emoji.css'
 				],
-				'assets/plugins/emoji/css/noto-color-emoji.css': [
-					'assets/plugins/emoji/css/noto-color-emoji.css'
+				'assets/plugins/emoji/css/plugin.css' : [
+					'assets/plugins/emoji/css/plugin.css'
 				],
 			},
 		},
@@ -100,24 +168,19 @@ module.exports = function(grunt) {
 			},
 			minify: {
 				files: {
+					'assets/plugins/emoji/css/noto-color-emoji.min.css' : [
+						'assets/plugins/emoji/css/noto-color-emoji.css'
+					],
 					'assets/plugins/emoji/css/emoji.min.css' : [
 						'assets/plugins/emoji/css/emoji.css'
 					],
-					'assets/plugins/emoji/css/noto-color-emoji.min.css' : [
-						'assets/plugins/emoji/css/noto-color-emoji.css'
+					'assets/plugins/emoji/css/plugin.min.css' : [
+						'assets/plugins/emoji/css/plugin.css'
 					],
 				}
 			},
 		},
 		copy: {
-			fonts: {
-				expand: true,
-				cwd: 'node_modules/@fontsource/noto-color-emoji/files',
-				src: [
-					'**'
-				],
-				dest: 'assets/plugins/emoji/fonts/',
-			},
 			src: {
 				expand: true,
 				cwd: 'src/fonts',
@@ -126,6 +189,35 @@ module.exports = function(grunt) {
 				],
 				dest: 'assets/plugins/emoji/fonts/',
 			}
+		},
+		pug: {
+			serv: {
+				options: {
+					doctype: 'html',
+					client: false,
+					pretty: "",//'\t',
+					separator:  "",//'\n',
+					data: function(dest, src) {
+						return {
+							"hash_css": hash(
+								'assets/plugins/emoji/css/emoji.min.css',
+								'assets/plugins/emoji/css/plugin.min.css',
+								'assets/plugins/emoji/css/emoji.min.css'
+							),
+							'hash_js': hash('assets/plugins/emoji/js/plugin.min.js'),
+						}
+					}
+				},
+				files: [
+					{
+						expand: true,
+						cwd: __dirname + '/src/pug/',
+						src: [ '*.pug' ],
+						dest: __dirname + '/assets/plugins/emoji/',
+						ext: '.html'
+					},
+				]
+			},
 		},
 		compress: {
 			main: {
@@ -147,14 +239,15 @@ module.exports = function(grunt) {
 		},
 	});
 	grunt.registerTask('default',	[
-		//'concat',
-		//'uglify',
+		'clean',
+		'concat',
+		'uglify',
 		'less',
 		'autoprefixer',
 		'group_css_media_queries',
 		'cssmin',
-		//'pug',
 		'copy',
+		'pug',
 		'compress'
 	]);
 }
